@@ -1228,7 +1228,7 @@ sub convert
                             # exchange possible Windows EOL (CRLF) with Unix EOL (LF)
             $_ =~ s/\r\n$/\n/;
 
-            if ( /^From /
+            if ( /^From (MAILER.DAEMON|.*@).*[0-9]{2}\:[0-9]{2}\:[0-9]{2} [0-9]{4}\n$/
 		&& $previous_line_was_empty
 		&& (!defined $contentlength) 
 	       )
