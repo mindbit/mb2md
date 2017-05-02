@@ -770,7 +770,7 @@ sub convertit
 
 	# Subfolders are Maildir++ folders and should be marked by the
 	# presence of an empty "maildirfolder" file
-	sysopen(F, "$dest/$destinationdir/maildirfolder", O_CREAT|O_WRONLY, 0600) && close F;
+	sysopen(F, "$dest/$destinationdir/maildirfolder", O_CREAT|O_WRONLY, 0660) && close F;
 
 	print("destination = $destinationdir\n");
 	if (-d $srcdir) {
@@ -812,11 +812,11 @@ sub convertit
 sub maildirmake
 {
 	foreach(@_) {
-		-d $_ or mkdir $_,0700 or die("Fatal: Directory $_ doesn't exist and can't be created.\n");
+		-d $_ or mkdir $_,0770 or die("Fatal: Directory $_ doesn't exist and can't be created.\n");
 	
-		-d "$_/tmp" or mkdir("$_/tmp",0700) or die("Fatal: Unable to make $_/tmp/ subdirectory.\n");
-		-d "$_/new" or mkdir("$_/new",0700) or die("Fatal: Unable to make $_/new/ subdirectory.\n");
-		-d "$_/cur" or mkdir("$_/cur",0700) or die("Fatal: Unable to make $_/cur/ subdirectory.\n");
+		-d "$_/tmp" or mkdir("$_/tmp",0770) or die("Fatal: Unable to make $_/tmp/ subdirectory.\n");
+		-d "$_/new" or mkdir("$_/new",0770) or die("Fatal: Unable to make $_/new/ subdirectory.\n");
+		-d "$_/cur" or mkdir("$_/cur",0770) or die("Fatal: Unable to make $_/cur/ subdirectory.\n");
 	}
 }
 
@@ -1802,7 +1802,7 @@ sub convert
 		    # but we open it in O_EXCL mode to be sure.
 		    # NOTE: NO LOCKING IS PERFORMED so beware running this
 		    # on an active Maildir folder
-		if (sysopen(KEYWORDS, $keywordsfile, O_WRONLY|O_CREAT|O_EXCL, 0600))
+		if (sysopen(KEYWORDS, $keywordsfile, O_WRONLY|O_CREAT|O_EXCL, 0660))
 		{
 			for (my $i = 0;$i < scalar(@keywords);$i++)
 			{
@@ -1835,7 +1835,7 @@ sub convert
 		            # these messages
 		            # NOTE: NO LOCKING IS DONE SO DON'T RUN THIS ON
 		            # AN ACTIVE MAILDIR
-		if (sysopen(UIDLIST, $uidlistfile, O_WRONLY|O_CREAT|O_EXCL, 0600))
+		if (sysopen(UIDLIST, $uidlistfile, O_WRONLY|O_CREAT|O_EXCL, 0660))
 		{
 			    # The first 1 is the file format version number
 			    # The second number is the UIDVALIDITY value
