@@ -1219,6 +1219,7 @@ sub convert
 				utime $t, $t, $messagefn;
 			} else {
 				printf("WARNING: Unable to parse date for msg %d of %s\n", $messagecount, $mbox);
+				printf("%s\n", $receivedate);
 			}
 		}
 	};
