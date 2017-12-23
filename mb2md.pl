@@ -1763,7 +1763,7 @@ sub convert
                             # End of the if statement dealing with message body.
             }
 
-	    $previous_line_was_empty = ( $_ eq "\n" );
+	    $previous_line_was_empty = ( /^ *\n$/ );
 
                             # End of while (MBOX) loop.
         }
